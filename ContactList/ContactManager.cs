@@ -43,7 +43,7 @@ namespace ContactList
 
         */
 
-        private int nextId = 1;
+        private int nextId = 1; // This should probably be 0
 
         public void AddContact(Contact contact)
         {
