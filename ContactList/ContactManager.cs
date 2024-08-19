@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ContactList
 {
-    public class ContactManager
+    public class ContactManager : IContact
     {
-        private List<Contact> contacts = new List<Contact>();
+        private readonly List<Contact> contacts = new List<Contact>();
 
         private int nextId = 1;
 
@@ -25,7 +25,7 @@ namespace ContactList
 
         public Contact GetContactById(int id)
         {
-            return contacts.First(c => c.Id == id);
+            return contacts.FirstOrDefault(c => c.Id == id);
         }
 
         public void UpdateContact(Contact contact) 

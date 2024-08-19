@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Contact.cs" />
     <Compile Include="ContactManager.cs" />
+    <Compile Include="ContactService.cs" />
+    <Compile Include="IContact.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

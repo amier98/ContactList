@@ -9,11 +9,13 @@ namespace ContactList
 {
     public class Program
     {
+        
         static void Main(string[] args)
         {
-            
             ContactManager contactManager = new ContactManager();
-
+            ContactService contactService = new ContactService(contactManager);
+            
+            //moved all the logic into the service as you suggested, looks much cleaner now and I see the maintainability
             while (true)
             {
                 Console.WriteLine("1: Add contact");
@@ -21,81 +23,24 @@ namespace ContactList
                 Console.WriteLine("3: Edit contacts");
                 Console.WriteLine("4: Delete contacts");
 
-                var option = Console.ReadLine();    
+                var option = Console.ReadLine();
 
-                switch(option)
+                switch (option)
                 {
                     case "1":
-                        AddContact(contactManager);
-                        break; 
+                        contactService.AddContact(contactManager);
+                        break;
                     case "2":
-                        GetAllContacts(contactManager);
+                        contactService.GetAllContacts(contactManager);
                         break;
                     case "3":
-                        UpdateContact(contactManager);
+                        contactService.UpdateContact(contactManager);
                         break;
                     case "4":
-                        DeleteContact(contactManager);
+                        contactService.DeleteContact(contactManager);
                         break;
-
                 }
-            }   
-        }
-
-        private static void DeleteContact(ContactManager contactManager)
-        {
-            Console.WriteLine("Enter Id of contact you want to delete: ");
-            var contactId = Console.ReadLine();
-
-            if (int.TryParse(contactId, out int id))
-            { 
-
-            contactManager.DeleteContact(id);
             }
         }
-
-        private static void UpdateContact(ContactManager contactManager)
-        {
-            Console.WriteLine("Enter id of contact to update: ");
-            var contactId = Console.ReadLine();
-
-            if (int.TryParse(contactId, out int id))
-            {
-                var contact = contactManager.GetContactById(id);
-
-                if (contact != null)
-
-                Console.WriteLine("Edit Name: ");
-                contact.Name = Console.ReadLine();
-                Console.WriteLine("Edit Number: ");
-                contact.Phone = Console.ReadLine();
-
-                contactManager.UpdateContact(contact);
-            }
-        }
-
-        public static void AddContact(ContactManager contactManager)
-        {
-            Contact contact = new Contact();
-
-            Console.WriteLine("Add Contact Name");
-            contact.Name = Console.ReadLine();
-            Console.WriteLine("Add Phone Nummber");
-            contact.Phone = Console.ReadLine();
-
-            contactManager.AddContact(contact);
-            Console.WriteLine(contact.Id);
-        }
-
-        public static void GetAllContacts(ContactManager contactManager)
-        {
-            var contacts = contactManager.GetContacts();
-
-            foreach (var contact in contacts)
-            {
-                Console.WriteLine(contact.Name);
-            }
-        }
-
     }
 }
