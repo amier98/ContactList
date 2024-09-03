@@ -28,16 +28,16 @@ namespace ContactList
                 switch (option)
                 {
                     case "1":
-                        contactService.AddContact(contactManager);
+                        contactService.AddContact();
                         break;
                     case "2":
-                        contactService.GetAllContacts(contactManager);
+                        contactService.GetAllContacts();
                         break;
                     case "3":
-                        contactService.UpdateContact(contactManager);
+                        contactService.UpdateContact();
                         break;
                     case "4":
-                        contactService.DeleteContact(contactManager);
+                        contactService.DeleteContact();
                         break;
                 }
             }

@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ContactList
 {
-    public class ContactService
+    public class ContactService 
     {
-        private readonly ContactManager _contactManager;
+        private readonly IContact _contactManager;
 
-        public ContactService(ContactManager contactManager)
+        public ContactService(IContact contactManager)
         {
             _contactManager = contactManager;
         }
 
-        public void DeleteContact(ContactManager _contactManager)
+        public void DeleteContact()
         {
             Console.WriteLine("Enter Id of contact you want to delete: ");
             var contactId = Console.ReadLine();
@@ -41,7 +41,7 @@ namespace ContactList
             }
         }
 
-        public void UpdateContact(ContactManager _contactManager)
+        public void UpdateContact()
         {
             Console.WriteLine("Enter id of contact to update: ");
             var contactId = Console.ReadLine();
@@ -72,7 +72,7 @@ namespace ContactList
             }
         }
 
-        public void AddContact(ContactManager _contactManager)
+        public void AddContact()
         {
             Contact contact = new Contact();
 
@@ -117,7 +117,7 @@ namespace ContactList
 
         }
 
-        public void GetAllContacts(ContactManager _contactManager)
+        public void GetAllContacts()
         {
             var contacts = _contactManager.GetContacts();
 
